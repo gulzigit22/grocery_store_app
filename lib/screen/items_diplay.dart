@@ -52,7 +52,7 @@ class _ItemsDisplayState extends State<ItemsDisplay> {
                     Center(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(125),
-                        child: Image.network(
+                        child: Image.asset(
                           food.image,
                           height: 120,
                           width: 120,

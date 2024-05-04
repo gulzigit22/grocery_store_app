@@ -16,7 +16,7 @@ class FirstScreen extends StatelessWidget {
               height: 80,
             ),
             Image.asset(
-              "asset/fourth.png",
+              "assets/fourth.png",
               height: 300,
               width: 300,
             ),

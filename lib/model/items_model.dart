@@ -23,8 +23,7 @@ class FoodDetail {
 List<FoodDetail> foodsItems = [
   FoodDetail(
     id: '1',
-    image:
-        'https://www.budgetbytes.com/wp-content/uploads/2022/08/Avocado-Tomato-Salad-above.jpg',
+    image: 'assets/jemishter.jpg',
     name: 'Avocado Salad',
     price: 12,
     rate: 4.5,
@@ -35,8 +34,7 @@ List<FoodDetail> foodsItems = [
   ),
   FoodDetail(
       id: '2',
-      image:
-          'https://c8.alamy.com/comp/F2F1E4/royal-hamburger-isolated-F2F1E4.jpg',
+      image: 'assets/jemishter.jpg',
       name: 'Royal Burger',
       price: 20,
       rate: 5.0,
@@ -46,8 +44,7 @@ List<FoodDetail> foodsItems = [
           "A Royal burger is a patty of ground beef grilled and placed between two halves of a bun. Slices of raw onion, lettuce, bacon, mayonnaise, and other ingredients add flavor. Burgers are considered an American food but are popular around the world."),
   FoodDetail(
     id: '3',
-    image:
-        'https://www.modernhoney.com/wp-content/uploads/2023/05/Fruit-Salad-10.jpg',
+    image: 'assets/jemishter.jpg',
     name: 'Fruit Salad',
     price: 12,
     rate: 4.6,
@@ -58,8 +55,7 @@ List<FoodDetail> foodsItems = [
   ),
   FoodDetail(
     id: '4',
-    image:
-        'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/the-health-benefits-of-nuts-main-image-700-350-bb95ac2.jpg?resize=768,574',
+    image: 'assets/jemishter.jpg',
     name: 'Mix Nut',
     price: 30,
     rate: 5.0,
@@ -70,8 +66,7 @@ List<FoodDetail> foodsItems = [
   ),
   FoodDetail(
     id: '5',
-    image:
-        "https://www.eatingbirdfood.com/wp-content/uploads/2023/02/strawberry-protein-shake-hero-new-cropped.jpg",
+    image: 'assets/jemishter.jpg',
     name: 'Protein Shake',
     price: 50,
     rate: 4.8,
@@ -82,7 +77,7 @@ List<FoodDetail> foodsItems = [
   ),
   FoodDetail(
     id: '5',
-    image: "https://m.media-amazon.com/images/I/61LojzJ+PuL._SL1000_.jpg",
+    image: 'assets/jemishter.jpg',
     name: 'Dairy Milk',
     price: 05,
     rate: 5.0,

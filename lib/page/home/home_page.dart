@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_store_app/page/cart/cart_page.dart';
 import 'package:grocery_store_app/page/chat/chat_page.dart';
 import 'package:grocery_store_app/page/profil/profil.dart';
-import 'package:grocery_store_app/screen/header_parts.dart';
 import 'package:grocery_store_app/screen/items_diplay.dart';
 import 'package:grocery_store_app/utils/colors.dart';
 

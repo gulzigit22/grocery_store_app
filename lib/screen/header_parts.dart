@@ -182,7 +182,7 @@ class _HeaderPartsState extends State<HeaderParts> {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(
-              "asset/sir.png",
+              "assets/sir.png",
               height: 40,
               width: 40,
             ),
