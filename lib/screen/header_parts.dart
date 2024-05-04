@@ -123,17 +123,18 @@ class _HeaderPartsState extends State<HeaderParts> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Padding(padding: EdgeInsets.only(top: 20)),
           Text(
-            "Салам Набин",
+            "Салам ",
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: primaryColors,
-                fontSize: 18),
+                fontSize: 30),
           ),
           Text(
             "Тамагыңды тап",
             style: TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.black, fontSize: 34),
+                fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
           ),
         ],
       ),
