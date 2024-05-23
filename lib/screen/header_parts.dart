@@ -127,9 +127,7 @@ class _HeaderPartsState extends State<HeaderParts> {
           Text(
             "Салам ",
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: primaryColors,
-                fontSize: 30),
+                fontWeight: FontWeight.bold, color: primaryColors, fontSize: 0),
           ),
           Text(
             "Тамагыңды тап",

@@ -11,21 +11,20 @@ class DetailPage extends StatefulWidget {
   State<DetailPage> createState() => _DetailPageState();
 }
 
-int quantity = 1;
-
 class _DetailPageState extends State<DetailPage> {
+  int quantity = 1;
+  final Cart cart = Cart(); // Initialize the cart
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColors,
       body: ListView(
         children: [
-          const SizedBox(
-            height: 20,
-          ),
-          // detail header
+          const SizedBox(height: 20),
+          // Detail header
           detailItemsHeader(),
-          // for image
+          // Detail image
           detailImage(),
           Container(
             color: Colors.white,
@@ -39,27 +38,29 @@ class _DetailPageState extends State<DetailPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // For name
+                          // Food name
                           Text(
                             widget.food.name,
                             maxLines: 1,
                             style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 34),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 34,
+                            ),
                           ),
-                          // For price
+                          // Food price
                           Text(
                             '\$${widget.food.price}',
                             style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                                color: primaryColors),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                              color: primaryColors,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    // For items quantity
+                    // Quantity selector
                     Material(
                       color: primaryColors,
                       borderRadius: BorderRadius.circular(30),
@@ -68,112 +69,93 @@ class _DetailPageState extends State<DetailPage> {
                           IconButton(
                             onPressed: () {
                               if (quantity > 1) {
-                                quantity -= 1;
-                                setState(() {});
+                                setState(() {
+                                  quantity -= 1;
+                                });
                               }
                             },
-                            icon: const Icon(
-                              Icons.remove,
-                              color: Colors.white,
-                            ),
+                            icon: const Icon(Icons.remove, color: Colors.white),
                           ),
-                          const SizedBox(
-                            width: 4,
-                          ),
+                          const SizedBox(width: 4),
                           Text(
                             "$quantity",
                             style: const TextStyle(
                                 color: Colors.white, fontSize: 25),
                           ),
-                          const SizedBox(
-                            width: 4,
-                          ),
+                          const SizedBox(width: 4),
                           IconButton(
                             onPressed: () {
-                              quantity += 1;
-                              setState(() {});
+                              setState(() {
+                                quantity += 1;
+                              });
                             },
-                            icon: const Icon(
-                              Icons.add,
-                              color: Colors.white,
-                            ),
+                            icon: const Icon(Icons.add, color: Colors.white),
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
-                const SizedBox(
-                  height: 27,
-                ),
+                const SizedBox(height: 27),
                 Row(
                   children: [
-                    // For rating
-                    const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
+                    // Food rating
+                    const Icon(Icons.star, color: Colors.amber),
+                    const SizedBox(width: 4),
                     Text(
                       widget.food.rate.toString(),
                       style:
                           const TextStyle(color: Colors.black38, fontSize: 18),
                     ),
                     const Spacer(),
-                    // For kcla
-                    const Icon(
-                      Icons.fiber_manual_record,
-                      color: Colors.red,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
+                    // Food kcal
+                    const Icon(Icons.fiber_manual_record, color: Colors.red),
+                    const SizedBox(width: 4),
                     Text(
                       '${widget.food.kcal}kcal',
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                     const Spacer(),
-                    // For time
-                    const Icon(
-                      Icons.access_time_filled,
-                      color: Colors.amber,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
+                    // Cooking time
+                    const Icon(Icons.access_time_filled, color: Colors.amber),
+                    const SizedBox(width: 4),
                     Text(
                       widget.food.cookingTime,
                       maxLines: 1,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ],
                 ),
-                // For description
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
+                // Food description
                 Text(
                   widget.food.description,
                   style: const TextStyle(fontSize: 16, color: Colors.black54),
                 ),
-                // For add to cart button
-                const SizedBox(
-                  height: 25,
-                ),
+                const SizedBox(height: 25),
+                // Add to Cart button
                 Material(
                   color: primaryColors,
                   borderRadius: BorderRadius.circular(15),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(15),
                     onTap: () {
+                      cart.addItem(widget.food, quantity);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('${widget.food.name} added to cart'),
+                        ),
+                      );
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MyApp1(),
+                          builder: (context) => CartPage(cart: cart),
                         ),
                       );
                     },
@@ -193,17 +175,16 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
+                const SizedBox(height: 25),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
+  // Detail image widget
   SizedBox detailImage() {
     return SizedBox(
       height: 300,
@@ -230,9 +211,10 @@ class _DetailPageState extends State<DetailPage> {
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.green[400]!,
-                      blurRadius: 15,
-                      offset: const Offset(0, 8))
+                    color: Colors.green[400]!,
+                    blurRadius: 15,
+                    offset: const Offset(0, 8),
+                  ),
                 ],
                 borderRadius: BorderRadius.circular(250),
               ),
@@ -246,18 +228,19 @@ class _DetailPageState extends State<DetailPage> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
+  // Detail items header
   Padding detailItemsHeader() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
-          // For back button
+          // Back button
           Material(
             color: Colors.white.withOpacity(0.21),
             borderRadius: BorderRadius.circular(10),
@@ -266,13 +249,17 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ),
           const Spacer(),
-          // For detail food
+          // Detail food text
           const Text(
             "Detail Food",
             style: TextStyle(
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+              fontSize: 20,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const Spacer(),
+          // Favorite icon
           Material(
             color: Colors.white.withOpacity(0.21),
             borderRadius: BorderRadius.circular(10),
@@ -288,10 +275,9 @@ class _DetailPageState extends State<DetailPage> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
-// design is completed 

@@ -1,38 +1,153 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_store_app/model/items_model.dart';
 
-// class Product {
-//   final String name;
-//   final double price;
-
-//   Product({required this.name, required this.price});
-// }
-
 class Cart {
-  final List<FoodDetail> items = [];
+  final List<CartItem> _items = [];
 
-  double get totalPrice {
-    double total = 0;
-    for (var item in items) {
-      total += item.price;
+  List<CartItem> get items => _items;
+
+  void addItem(FoodDetail food, int quantity) {
+    var existingItem = _items.firstWhere(
+      (item) => item.food.id == food.id,
+      orElse: () => CartItem(food: food, quantity: 0),
+    );
+
+    if (existingItem.quantity == 0) {
+      _items.add(CartItem(food: food, quantity: quantity));
+    } else {
+      existingItem.quantity += quantity;
     }
-    return total;
   }
 
-  void addItem(FoodDetail product) {
-    items.add(product);
+  void removeItem(FoodDetail food) {
+    _items.removeWhere((item) => item.food.id == food.id);
   }
 
-  void removeItem(FoodDetail product) {
-    items.remove(product);
+  double get totalPrice =>
+      _items.fold(0, (total, item) => total + item.food.price * item.quantity);
+}
+
+class CartItem {
+  final FoodDetail food;
+  int quantity;
+
+  CartItem({required this.food, required this.quantity});
+}
+
+class CartPage extends StatefulWidget {
+  final Cart cart;
+
+  const CartPage({
+    super.key,
+    required this.cart,
+  });
+
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Your Cart'),
+      ),
+      body: ListView.builder(
+        itemCount: widget.cart.items.length,
+        itemBuilder: (context, index) {
+          final item = widget.cart.items[index];
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            height: 120,
+            decoration: BoxDecoration(
+              color: const Color(0xff1F8BA7),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Center(
+              child: Row(children: [
+                // Card(
+                //   child: Image.asset(
+                //     product.image,
+                //     width: 106,
+                //     height: 97,
+                //     fit: BoxFit.cover,
+                //   ),
+                // ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.food.name,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      '\$${item.food.price * item.quantity}',
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () {
+                    setState(() {});
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Text('${item.food.name} added to cart')),
+                    );
+                  },
+                ),
+                Text('\$${item.food.price * item.quantity}'),
+                IconButton(
+                  icon: const Icon(Icons.remove),
+                  onPressed: () {
+                    setState(() {});
+                    // widget.cart.removeItem(product);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('${item.food.name} added to cart'),
+                      ),
+                    );
+                  },
+                ),
+              ]),
+            ),
+          );
+          //  ListTile(
+          //   title: Text(item.food.name),
+          //   subtitle: Text('Quantity: ${item.quantity}'),
+          //   trailing: Text('\$${item.food.price * item.quantity}'),
+          // );
+        },
+      ),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Total:',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              '\$${widget.cart.totalPrice.toStringAsFixed(2)}',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
-// ignore: must_be_immutable
-class MyApp1 extends StatelessWidget {
+class _MyApp1State extends State {
   final Cart cart = Cart();
 
-  List<FoodDetail> foodsItems = [
+  final List<FoodDetail> foodsItems = [
     FoodDetail(
       id: '1',
       image: 'assets/jemishter.jpg',
@@ -45,15 +160,16 @@ class MyApp1 extends StatelessWidget {
           "This avocado salad is a delicious combination of ripe avocados, sweet onions, fresh tomatoes, and cilantro. This recipe is so easy to make and very colorful — I think you'll like it! This avocado salad recipe is full of bold, fresh flavor and color.",
     ),
     FoodDetail(
-        id: '2',
-        image: 'assets/jemishter.jpg',
-        name: 'Royal Burger',
-        price: 20,
-        rate: 5.0,
-        kcal: '100',
-        cookingTime: '30min',
-        description:
-            "A Royal burger is a patty of ground beef grilled and placed between two halves of a bun. Slices of raw onion, lettuce, bacon, mayonnaise, and other ingredients add flavor. Burgers are considered an American food but are popular around the world."),
+      id: '2',
+      image: 'assets/jemishter.jpg',
+      name: 'Royal Burger',
+      price: 20,
+      rate: 5.0,
+      kcal: '100',
+      cookingTime: '30min',
+      description:
+          "A Royal burger is a patty of ground beef grilled and placed between two halves of a bun. Slices of raw onion, lettuce, bacon, mayonnaise, and other ingredients add flavor. Burgers are considered an American food but are popular around the world.",
+    ),
     FoodDetail(
       id: '3',
       image: 'assets/jemishter.jpg',
@@ -85,13 +201,13 @@ class MyApp1 extends StatelessWidget {
       kcal: '100',
       cookingTime: '05min',
       description:
-          "This strawberry protein shake is creamy, easy to whip up and tastes like a milkshake, but is made",
+          "This strawberry protein shake is creamy, easy to whip up and tastes like a milkshake, but is made with healthy ingredients.",
     ),
     FoodDetail(
-      id: '5',
+      id: '6',
       image: 'assets/jemishter.jpg',
       name: 'Dairy Milk',
-      price: 05,
+      price: 5,
       rate: 5.0,
       kcal: '10',
       cookingTime: 'Ready',
@@ -100,80 +216,148 @@ class MyApp1 extends StatelessWidget {
     ),
   ];
 
-  MyApp1({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Grocery Cart'),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.rice_bowl_sharp)),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Grocery Cart'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_rounded),
         ),
-        body: ListView.builder(
-          itemCount: foodsItems.length,
-          itemBuilder: (context, index) {
-            final product = foodsItems[index];
-            return Card(
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-              color: const Color(0xffEB96EB),
-              child: ListTile(
-                leading: IconButton(
-                  icon: Icon(Icons.add),
+      ),
+      body: ListView.builder(
+        itemCount: foodsItems.length,
+        itemBuilder: (context, index) {
+          final product = foodsItems[index];
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            height: 120,
+            decoration: BoxDecoration(
+              color: const Color(0xff1F8BA7),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Center(
+              child: Row(children: [
+                Card(
+                  child: Image.asset(
+                    product.image,
+                    width: 106,
+                    height: 97,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      product.name,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      '\$${product.price.toString()}',
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+                IconButton(
+                  icon: const Icon(Icons.add),
                   onPressed: () {
-                    cart.addItem(product);
+                    setState(() {});
+
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('${product.name} remove to cart')),
+                      SnackBar(content: Text('${product.name} added to cart')),
                     );
                   },
                 ),
-                title: Text(
-                  product.name,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w600),
+                Text(cart.totalPrice.toStringAsFixed(2)),
+                IconButton(
+                  icon: const Icon(Icons.remove),
+                  onPressed: () {
+                    setState(() {});
+                    cart.removeItem(product);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('${product.name} added to cart'),
+                      ),
+                    );
+                  },
                 ),
-                subtitle: Text(
-                  product.price.toString(),
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w600),
-                ),
-                trailing: CircleAvatar(
-                  radius: 30,
-                  child: Image.network(product.image),
-                ),
-                onTap: () {},
-              ),
-            );
-          },
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: const Text('Cart Total'),
-                  content:
-                      Text('Total: \$${cart.totalPrice.toStringAsFixed(2)}'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Close'),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
-          label: const Text('Cart Total'),
-          icon: const Icon(Icons.shopping_cart),
-        ),
+              ]),
+            ),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text('Cart Total'),
+                content: Text('Total: \$${cart.totalPrice.toStringAsFixed(2)}'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      cart.items.clear();
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Close'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('Cart Total'),
+                            content: Column(
+                              children: [
+                                Text(
+                                    'Total: \$${cart.totalPrice.toStringAsFixed(2)}'),
+                                const SizedBox(height: 30),
+                                TextField(
+                                  decoration: InputDecoration(
+                                      hintText: '+996',
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30))),
+                                )
+                              ],
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  cart.items.clear();
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Close'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('заказать'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    child: const Text('заказать'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        label: const Text('Cart Total'),
+        icon: const Icon(Icons.shopping_cart),
       ),
     );
   }
