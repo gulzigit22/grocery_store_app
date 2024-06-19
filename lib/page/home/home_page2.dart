@@ -18,8 +18,6 @@ class _HomePageState extends State<HomePage2> {
       backgroundColor: Colors.white,
       body: ListView(
         children: [
-          const SizedBox(height: 16),
-          header(),
           const SizedBox(height: 30),
           title(),
           const SizedBox(height: 20),

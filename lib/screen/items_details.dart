@@ -139,9 +139,8 @@ class _DetailPageState extends State<DetailPage> {
                   style: const TextStyle(fontSize: 16, color: Colors.black54),
                 ),
                 const SizedBox(height: 25),
-                // Add to Cart button
                 Material(
-                  color: primaryColors,
+                  color: Colors.green,
                   borderRadius: BorderRadius.circular(15),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(15),
@@ -175,6 +174,42 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                   ),
                 ),
+                // Add to Cart button
+                // Material(
+                //   color: primaryColors,
+                //   borderRadius: BorderRadius.circular(15),
+                //   child: InkWell(
+                //     borderRadius: BorderRadius.circular(15),
+                //     onTap: () {
+                //       cart.addItem(widget.food, quantity);
+                //       ScaffoldMessenger.of(context).showSnackBar(
+                //         SnackBar(
+                //           content: Text('${widget.food.name} added to cart'),
+                //         ),
+                //       );
+                //       Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //           builder: (context) => CartPage(cart: cart),
+                //         ),
+                //       );
+                //     },
+                //     child: Container(
+                //       height: 65,
+                //       width: double.infinity,
+                //       padding: const EdgeInsets.symmetric(vertical: 21),
+                //       child: const Text(
+                //         "Add to Cart",
+                //         textAlign: TextAlign.center,
+                //         style: TextStyle(
+                //           fontSize: 20,
+                //           color: Colors.white,
+                //           fontWeight: FontWeight.bold,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 const SizedBox(height: 25),
               ],
             ),

@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const HomePage2(),
-    ProfilePage()
+    const ProfileScreen()
   ];
 
   void _onItemTapped(int index) {

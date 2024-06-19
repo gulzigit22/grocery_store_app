@@ -1,83 +1,51 @@
 import 'package:flutter/material.dart';
 
-class UserProfile {
-  final String name;
-  final String email;
-  // final String imageUrl;
-  final String phoneNumber;
-  final String address;
-
-  UserProfile({
-    required this.name,
-    required this.email,
-    // required this.imageUrl,
-    required this.phoneNumber,
-    required this.address,
-  });
-}
-
-class ProfilePage extends StatelessWidget {
-  final UserProfile user = UserProfile(
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    // imageUrl: 'assets/profile_image.png', // Replace with your own image asset
-    phoneNumber: '+1 234 567 890',
-    address: '123 Main Street, Anytown, USA',
-  );
-
-  ProfilePage({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
+        centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              CircleAvatar(
-                radius: 50,
-                // backgroundImage: AssetImage(user.imageUrl),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/fourth.png'),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'John Doe',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(height: 16),
-              Text(
-                user.name,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Flutter Developer',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey,
               ),
-              const SizedBox(height: 8),
-              Text(
-                user.email,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
+              'Pellentesque imperdiet, sapien nec tristique consequat, nunc purus tincidunt quam, '
+              'et viverra nunc erat at eros.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
               ),
-              const SizedBox(height: 16),
-              ListTile(
-                leading: const Icon(Icons.phone),
-                title: const Text('Phone'),
-                subtitle: Text(user.phoneNumber),
-              ),
-              ListTile(
-                leading: const Icon(Icons.location_on),
-                title: const Text('Address'),
-                subtitle: Text(user.address),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  // Navigate to edit profile page
-                },
-                child: const Text('Edit Profile'),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
