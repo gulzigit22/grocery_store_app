@@ -23,67 +23,87 @@ class FoodDetail {
 List<FoodDetail> foodsItems = [
   FoodDetail(
     id: '1',
-    image: 'assets/jemishter.jpg',
-    name: 'Avocado Salad',
-    price: 12,
+    image: 'assets/alma.jpeg',
+    name: 'Алма',
+    price: 80,
     rate: 4.5,
     kcal: '100',
     cookingTime: '20min',
-    description:
-        "This avocado salad is a delicious combination of ripe avocados, sweet onions, fresh tomatoes, and cilantro. This recipe is so easy to make and very colorful — I think you'll like it! This avocado salad recipe is full of bold, fresh flavor and color.",
+    description: '''
+Алма тууралуу кыскача маалымат:
+
+Тарыхы: Алманын мекени Борбордук Азия, тагыраак айтканда Казакстандагы Тянь-Шань тоолору.
+Түрлөрү: Жүздөгөн түрлөрү бар. Белгилүү сорттору: "Голден Делишес", "Грэнни Смит", "Фуджи", "Гала".
+Ден соолукка пайдасы: Витаминдерге, минералдарга жана антиоксиданттарга бай. Жүрөк-кан тамыр ооруларын, диабетти жана ашказан ооруларын алдын алат.
+Өндүрүш: Эң көп алма өндүргөн өлкөлөр: Кытай, АКШ, Польша, Индия, Иран.
+Тандоо жана сактоо: Жаңы алмаларды жылмакай, түстүү жана таксыз тандоо керек. Муздаткычта сактоо сунушталат.''',
   ),
   FoodDetail(
-      id: '2',
-      image: 'assets/jemishter.jpg',
-      name: 'Royal Burger',
-      price: 20,
-      rate: 5.0,
-      kcal: '100',
-      cookingTime: '30min',
-      description:
-          "A Royal burger is a patty of ground beef grilled and placed between two halves of a bun. Slices of raw onion, lettuce, bacon, mayonnaise, and other ingredients add flavor. Burgers are considered an American food but are popular around the world."),
+    id: '2',
+    image: 'assets/anar.jpeg',
+    name: 'Анар',
+    price: 120,
+    rate: 5.0,
+    kcal: '100',
+    cookingTime: '30min',
+    description: '''Анар тууралуу кыскача маалымат:
+
+Анар тууралуу кызыктуу фактылар
+Тарыхы жана таралышы: Анар байыркы мезгилден бери Жакынкы Чыгышта жана Жер Ортолук деңиз аймагында өстүрүлүп келет. Алгачкы жолу Иранда жана Индияда өстүрүлгөн деп эсептелет.
+Түрлөрү: Анарлардын ар кандай сорттору бар, алардын ичинен эң белгилүүлөрүнө "Вандерфул", "Гренада" жана "Ангел Ред" кирет.
+Ден соолукка пайдасы: Анар антиоксиданттарга, витамин Сге, клетчаткага жана башка пайдалуу заттарга бай. Алар жүрөк-кан тамыр ооруларына, рак оорусуна жана сезгенүү процесстерине каршы күрөшүүгө жардам берет.
+Айыл чарба жана өндүрүш: Дүйнө жүзү боюнча эң көп анар өндүргөн өлкөлөргө Иран, Индия, Кытай, Түркия жана Египет кирет.''',
+  ),
   FoodDetail(
     id: '3',
-    image: 'assets/jemishter.jpg',
-    name: 'Fruit Salad',
-    price: 12,
+    image: 'assets/balgaricki.jpeg',
+    name: 'Балгарский',
+    price: 30,
     rate: 4.6,
     kcal: '20',
     cookingTime: '15min',
-    description:
-        "Fruit salad is a dish consisting of various kinds of fruit, sometimes served in a liquid, either their juices or a syrup. In different forms, fruit salad can be served as an appetizer or a side as a salad. A fruit salad is sometimes known as a fruit cocktail, or fruit cup.",
+    description: '''Болгар калемпири (камби)
+Тарых жана өтмөктөр
+Тарыхы жана таралышы: болгар калемпири Борбордук жана Түштүк Америкадан келип чыккан. Жаңы Дүйнө ачылгандан кийин ал Европага жана дүйнөнүн башка бөлүктөрүнө тез тарады.
+Түрлөрү: Болгариянын ар кандай түрлөрү барппер, түсү, формасы жана даамы боюнча вариант. Негизги түс түстөрү жашыл, кызыл, сары жана кызгылт сары. Кызыл калемпир-эң таттуу жашыл-ачуу.''',
   ),
   FoodDetail(
     id: '4',
-    image: 'assets/jemishter.jpg',
-    name: 'Mix Nut',
-    price: 30,
+    image: 'assets/pamidor.jpeg',
+    name: 'Памидор',
+    price: 130,
     rate: 5.0,
     kcal: '160',
     cookingTime: '08min',
-    description:
-        "Mixed nuts are a snack food consisting of any mixture of mechanically or manually combined nuts. Common constituents are peanuts, almonds, walnuts, Brazil nuts, cashews, hazelnuts, and pecans. Mixed nuts may be salted, roasted, cooked, or blanched.",
+    description: '''Помидор (Помидор)
+Тарыхы жана келип чыгышы
+Тарыхы жана таралышы: помидор Түштүк Америкадан, атап айтканда азыркы Перу менен Эквадордун аймактарынан келет. Испан изилдөөчүлөрү аларды 16-кылымда Европага алып келишкен, алар тез популярдуулукка жетишкен.
+Түрлөрү: помидордун формасы, түсү жана көлөмү боюнча ар кандай сорттору бар. Эң популярдуу сорттордун катарына "алча", "Рома", "Биг Биф"жана" Брендивайн " кирет.''',
   ),
   FoodDetail(
     id: '5',
-    image: 'assets/jemishter.jpg',
-    name: 'Protein Shake',
-    price: 50,
+    image: 'assets/alcha.jpeg',
+    name: 'Алча',
+    price: 150,
     rate: 4.8,
     kcal: '100',
     cookingTime: '05min',
-    description:
-        "This strawberry protein shake is creamy, easy to whip up and tastes like a milkshake, but is made",
+    description: '''Алча (жапайы өрүк)
+Тарыхы жана келип чыгышы
+Тарыхы жана таралышы: ач көздүк Кавказ жана Кичи Азия аймактарында пайда болгон. Ал Европада жана Азияда таралган жана кичинекей кычкыл жемиштери менен белгилүү.
+Түрлөрү: алчанын түсү жана даамы боюнча ар кандай сорттору бар. Эң кеңири тарагандары сары, кызыл жана кызгылт көк.''',
   ),
   FoodDetail(
     id: '5',
-    image: 'assets/jemishter.jpg',
-    name: 'Dairy Milk',
-    price: 05,
+    image: 'assets/banan.jpeg',
+    name: 'Банан',
+    price: 75,
     rate: 5.0,
     kcal: '10',
     cookingTime: 'Ready',
-    description:
-        "Shop Cadbury Dairy Milk Silk Chocolate Bar, 150g Pack of 3 online at a best price in Nepal. Get special offers, deals, discounts & fast delivery ...",
+    description: '''Банандар
+Тарыхы жана келип чыгышы
+Тарыхы жана таралышы: банан Түштүк-Чыгыш Азиядан, айрыкча азыркы Малайзия менен Индонезиянын аймактарынан келип чыккан. Алар Африкага жана Түштүк Америкага соода жана миграция аркылуу киргизилген. Бүгүнкү күндө банан дүйнөдөгү эң популярдуу жемиштердин катарына кирет.
+Түрлөрү: банандын ар кандай түрлөрү бар, алардын эң популярдуусу десерт банандары жана плантациялар. Десерт банандары таттуу жана жумшак, ал эми плантациялар катуураак жана көбүнчө тамак бышыруу үчүн колдонулат.''',
   ),
 ];

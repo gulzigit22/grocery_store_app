@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage2> {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
-                        '\$${food.price}',
+                        '${food.price} сом',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 19,
@@ -190,13 +190,13 @@ class _HomePageState extends State<HomePage2> {
   }
 
   Widget title() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
-            'Hi Indra',
+            'кош келиңиздер',
             style: TextStyle(
               color: Colors.green,
               fontWeight: FontWeight.w500,
@@ -204,7 +204,7 @@ class _HomePageState extends State<HomePage2> {
             ),
           ),
           Text(
-            'Find your food',
+            'Жемиштериңизди табыңыз',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage2> {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 prefixIcon: const Icon(Icons.search, color: Colors.green),
-                hintText: 'Search food',
+                hintText: 'издөө',
                 hintStyle: TextStyle(color: Colors.grey[600]),
               ),
             ),

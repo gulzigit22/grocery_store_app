@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_store_app/page/home/home_page2.dart';
-import 'package:grocery_store_app/page/profil/profil.dart';
+import 'package:grocery_store_app/page/profil/profile_page.dart';
 import 'package:grocery_store_app/utils/colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +15,10 @@ class _HomePageState extends State<HomePage> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const HomePage2(),
-    const ProfileScreen()
+    const ProfilPage(
+      nameLastName: '',
+      phone: '',
+    ),
   ];
 
   void _onItemTapped(int index) {

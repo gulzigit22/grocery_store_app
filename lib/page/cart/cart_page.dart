@@ -6,17 +6,15 @@ class Cart {
   List<Food> get items => _items;
 
   void addItem(food, int quantity) {
-    for (int i = 0; i < quantity; i++) {
-      var existingItem = _items.firstWhere(
-        (item) => item.food.id == food.id,
-        orElse: () => Food(food: food, quantity: 0),
-      );
+    var existingItem = _items.firstWhere(
+      (item) => item.food.id == food.id,
+      orElse: () => Food(food: food, quantity: 0),
+    );
 
-      if (existingItem.quantity == 0) {
-        _items.add(Food(food: food, quantity: quantity));
-      } else {
-        existingItem.quantity += quantity;
-      }
+    if (existingItem.quantity == 0) {
+      _items.add(Food(food: food, quantity: quantity));
+    } else {
+      existingItem.quantity += quantity;
     }
   }
 
