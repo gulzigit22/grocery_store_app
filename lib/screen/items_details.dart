@@ -109,27 +109,27 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                     const Spacer(),
                     // Food kcal
-                    const Icon(Icons.fiber_manual_record, color: Colors.red),
-                    const SizedBox(width: 4),
-                    Text(
-                      '${widget.food.kcal}kcal',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const Spacer(),
-                    // Cooking time
-                    const Icon(Icons.access_time_filled, color: Colors.amber),
-                    const SizedBox(width: 4),
-                    Text(
-                      widget.food.cookingTime,
-                      maxLines: 1,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
+                    // const Icon(Icons.fiber_manual_record, color: Colors.red),
+                    // const SizedBox(width: 4),
+                    // Text(
+                    //   '${widget.food.kcal}kcal',
+                    //   style: const TextStyle(
+                    //     fontWeight: FontWeight.bold,
+                    //     fontSize: 16,
+                    //   ),
+                    // ),
+                    // const Spacer(),
+                    // // Cooking time
+                    // const Icon(Icons.access_time_filled, color: Colors.amber),
+                    // const SizedBox(width: 4),
+                    // Text(
+                    //   widget.food.cookingTime,
+                    //   maxLines: 1,
+                    //   style: const TextStyle(
+                    //     fontWeight: FontWeight.bold,
+                    //     fontSize: 16,
+                    //   ),
+                    // ),
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -286,7 +286,7 @@ class _DetailPageState extends State<DetailPage> {
           const Spacer(),
           // Detail food text
           const Text(
-            "Detail Food",
+            "Сиздин жемиш",
             style: TextStyle(
               fontSize: 20,
               color: Colors.white,

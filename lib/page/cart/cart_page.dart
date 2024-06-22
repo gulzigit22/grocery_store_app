@@ -51,7 +51,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Your Cart'),
+          title: const Text('Арабаң'),
         ),
         body: ListView.builder(
           itemCount: widget.cart.items.length,
@@ -85,7 +85,7 @@ class _CartPageState extends State<CartPage> {
                               fontSize: 20, fontWeight: FontWeight.w600),
                         ),
                         Text(
-                          '\$${item.food.price * item.quantity}',
+                          '${item.food.price * item.quantity}сом',
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w600),
                         ),
@@ -168,7 +168,7 @@ class _CartPageState extends State<CartPage> {
                           width: 150,
                           padding: const EdgeInsets.symmetric(vertical: 21),
                           child: const Text(
-                            "Clear Cart",
+                            "Тазалоо",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 20,
@@ -230,17 +230,17 @@ class _CartPageState extends State<CartPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Информация о корзине'),
+          title: const Text('Себет жөнүндө маалымат'),
           content: const Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('товар был заказан'),
+              Text('буюм заказ кылынды'),
             ],
           ),
           actions: <Widget>[
             GestureDetector(
-              child: const Text('Закрыть'),
+              child: const Text('Жабуу'),
               onTap: () {
                 Navigator.of(context)
                     .pop(); // Закрыть диалоговое окно при нажатии на кнопку
