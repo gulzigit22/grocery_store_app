@@ -5,7 +5,7 @@ class Cart {
   final List<Food> _items = [];
   List<Food> get items => _items;
 
-  void addItem(food, int quantity) {
+  void addItem(FoodDetail food, int quantity) {
     var existingItem = _items.firstWhere(
       (item) => item.food.id == food.id,
       orElse: () => Food(food: food, quantity: 0),
@@ -40,7 +40,7 @@ class Food {
 class CartPage extends StatefulWidget {
   final Cart cart;
 
-  const CartPage({required this.cart});
+  const CartPage({super.key, required this.cart});
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -68,7 +68,7 @@ class _CartPageState extends State<CartPage> {
                 child: Row(
                   children: [
                     Card(
-                      child: Image.asset(
+                      child: Image.network(
                         item.food.image,
                         width: 106,
                         height: 97,

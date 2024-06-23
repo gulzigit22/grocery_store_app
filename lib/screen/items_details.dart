@@ -255,7 +255,7 @@ class _DetailPageState extends State<DetailPage> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(250),
-                child: Image.asset(
+                child: Image.network(
                   widget.food.image,
                   height: 250,
                   width: 250,

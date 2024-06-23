@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilPage extends StatefulWidget {
   const ProfilPage({
@@ -20,14 +21,38 @@ class ProfilPage extends StatefulWidget {
 class _ProfilPageState extends State<ProfilPage> {
   late String nameLastName;
   late String phone;
-  File? imageFile;
+  late File? imageFile;
 
   @override
   void initState() {
     super.initState();
-    nameLastName = widget.nameLastName;
-    phone = widget.phone;
-    imageFile = widget.imageFile;
+    nameLastName =
+        widget.nameLastName; // Initialize with default values from widget
+    phone = widget.phone; // Initialize with default values from widget
+    imageFile = widget.imageFile; // Initialize with default values from widget
+    loadData();
+  }
+
+  Future<void> loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      nameLastName = prefs.getString('nameLastName') ?? widget.nameLastName;
+      phone = prefs.getString('phone') ?? widget.phone;
+      String? imagePath = prefs.getString('imagePath');
+      imageFile = imagePath != null ? File(imagePath) : widget.imageFile;
+    });
+  }
+
+  // Method to save data to SharedPreferences
+  Future<void> saveData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('nameLastName', nameLastName);
+    await prefs.setString('phone', phone);
+    if (imageFile != null) {
+      await prefs.setString('imagePath', imageFile!.path);
+    } else {
+      await prefs.remove('imagePath');
+    }
   }
 
   @override
@@ -156,6 +181,7 @@ class _ProfilPageState extends State<ProfilPage> {
         phone = phoneCtl.text;
         imageFile = newImageFile;
       });
+      saveData(); // Save updated data to SharedPreferences
       Navigator.of(context).pop();
     }
 
@@ -216,8 +242,8 @@ class _ProfilPageState extends State<ProfilPage> {
           content: const Text('Маалыматтарды толуктап жазыңыз !!!'),
           actions: <Widget>[
             TextButton(
-              child: const Text('Save'),
               onPressed: saveProfile,
+              child: const Text('Save'),
             ),
             TextButton(
               child: const Text('Cancel'),
